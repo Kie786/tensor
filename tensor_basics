@@ -1,0 +1,152 @@
+# importing tensor
+
+import tensorflow as tf
+
+# importing numpy
+
+import numpy as np
+
+# o-d tensor 
+
+tensor_zero_d = tf.constant(1)
+
+# 1-D tensor
+
+tensor_one_d = tf.constant([1,2,3,4])
+
+#2-D tensor
+
+tensor_two_d = tf.constant([[1,2,3],[4,5,6],[7,8,9]])
+
+#3-D tensor
+
+tensor_three_d = tf.constant([
+    [[1,2,3],[4,5,6],[7,8,9]],
+    [[1,2,3],[4,5,6],[7,8,9]],
+    [[1,2,3],[4,5,6],[7,8,9]]
+
+])
+
+print(tensor_zero_d)
+print(tensor_one_d)
+print(tensor_three_d)
+
+# different datatype
+
+tensor_float_type = tf.constant([1,2,3], dtype=tf.float32)
+print(tensor_float_type)
+
+# casted tensor
+
+casted_tensor = tf.cast(tensor_float_type, dtype = tf.int32)
+print(casted_tensor)
+
+#tensor string
+
+string_tensor = tf.constant(["Hi", "Ritesh"], dtype = tf.string)
+print(string_tensor)
+
+# boolean tensor
+
+bool_tensor = tf.constant([True, False, True], dtype = tf.bool)
+print(bool_tensor)
+
+# Converting numpy into tensor
+
+np_array = np.array([1,2,3])
+print(np_array)
+
+converted_tensor = tf.convert_to_tensor(np_array)
+print(converted_tensor)
+
+# Methods in TensorFlow
+
+# eye method
+
+eye_tensor=tf.eye(
+    num_rows=5,
+    num_columns=5,
+    batch_shape=[4,], # number of batches of matrix
+    dtype=tf.bool,
+    name=None
+)
+print(eye_tensor)
+
+# fill method
+
+fill_tensor=tf.fill(
+    dims=[3,3], value=5, name=None, layout=None
+)
+
+print(fill_tensor)
+
+#ones method
+
+ones_tensor = tf.ones(
+    shape=[2,3],dtype = tf.float32, name=None
+)
+
+print(ones_tensor)
+
+#ones like method
+
+ones_like_tensor = tf.ones_like(fill_tensor)
+print(ones_like_tensor)
+
+#zeros method
+
+zeros_tensor = tf.zeros(
+    shape=[2,3],dtype = tf.float32, name=None
+)
+
+print(zeros_tensor)
+
+# shape method
+
+print(tf.shape(zeros_tensor))
+
+# rank method
+
+rank = tf.constant([[[1, 1, 1], [2, 2, 2]], [[3, 3, 3], [4, 4, 4]]])
+print(tf.rank(rank)) 
+
+#size method
+
+size = tf.constant([[[1, 1, 1], [2, 2, 2]], [[3, 3, 3], [4, 4, 4]]])
+print(tf.size(size))
+
+# random normal method ************************************************************************************************
+
+random_normal_tensor=tf.random.normal(
+    shape=[3,2],
+    mean=100.0, #elements close to 100
+    stddev=0.1, # std dev decreases elements more close to 100 and vice versa
+    dtype=tf.dtypes.float32,
+    seed=None,
+    name=None
+)
+print(random_normal_tensor)
+
+# random uniform method************************************************************************************************
+
+random_uniform_tensor = tf.random.uniform(
+    shape=[3,2],
+    minval=0,
+    maxval=100,
+    dtype=tf.dtypes.float32,
+    seed=None,
+    name=None
+)
+
+print(random_uniform_tensor)
+
+# Continuation of methods
+
+# random set seed ******************************************************************************************************
+
+tf.random.set_seed(5)
+print(tf.random.uniform(shape=[3,], minval=0, maxval=5, dtype = tf.float32, seed=10, name=None)) # same random output
+tf.random.set_seed(5)
+print(tf.random.uniform(shape=[3,], minval=0, maxval=5, dtype = tf.float32, seed=10, name=None)) # same random output
+
+
